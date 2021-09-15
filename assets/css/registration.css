@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Roboto+Mono&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input:focus{
+  box-shadow: none !important;
+}
+
+body{
+  background: url('../img/3e7a1fcc-d3cd-407f-9421-71f71c51ea7b.jpg');
+  height: 100%;
+  background-size: cover;
+}
+.registerform {
+  margin-top: 85px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-radius: 13px;
+  width: 40%;
+  padding: 10px 10px 10px 10px;
+  font-family: 'Nunito', sans-serif;
+  box-shadow:  0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+h1{
+  text-align: center;
+  color: #ff5e3a;
+}
+
+span {
+  color: grey;
+}
+
+h6 {
+  margin-left: 11px;
+  font-size: 30px;
+}
+
+.button {
+  background: #ff5e3a;
+  color: white;
+  float: right;
+  margin-top: -1rem;
+}
+
+.Email {
+  width: 36vw;
+}
+
+.password {
+  width: 36vw;
+}
+
+/* @media screen and (min-width:300px and max-width: 1360px) {
+  .Email {
+    width: 33vw;
+  }
+
+  .password {
+    width: 33vw;
+  }
+} */

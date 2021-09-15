@@ -1,0 +1,9 @@
+@media screen and (max-width:768px) {
+    .main-wrapper{
+        height: auto;
+        padding: 2rem 0.5rem;
+    }
+    .registration_checkbox .form-check .form-check-input {
+        margin-left: -1.2em;
+    }
+}

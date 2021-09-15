@@ -1,0 +1,85 @@
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+    /* HEADER-STYLE */
+    .profileHeader {
+        height: 13vh;
+        width: 100vw;
+    }
+
+    .userProfile {
+        height: 50px;
+        width: 4%;
+        border-radius: 50%;
+    }
+
+    .userProfile img {
+        height: 100%;
+        width: 100%;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+        /* COVER-PIC STYLING*/
+    .profileCover {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+        height: 400px;
+        background: url('https://html.crumina.net/html-olympus/img/top-header1.webp') no-repeat;
+        background-size: cover;
+        background-position: 80% 100%;
+    }
+    #uploadcover-button{
+        position: absolute;
+        right:8%;
+        top: 12%;
+    }
+    #uploadcover-button i{
+        font-size: 1.2rem;
+        color: #ddd;
+        outline: none;
+    }
+
+                /* PROFILE-CARD BOX STYLING */
+    .userProfilecard {
+        position: absolute;
+        top: 38%;
+        left: 9%;
+        height: 240px;
+        width: 240px;
+        background: #ddd;
+    }
+
+    .profileimg {
+        width: 50%;
+        height: 40%;
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    .profileimg img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    .uploadprofile-button{
+        position: relative;
+        bottom: 26%;
+        left: 20%;
+    }
+    .uploadprofile-button i{
+        font-size: 1.2rem;
+        color: #333;
+    }
+    .user-name{
+        position: absolute;
+        bottom: 40% ;
+        left: 30%;
+    }
+    /* PROFILE DETAIL  END */

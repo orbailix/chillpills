@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Roboto+Mono&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.row{
+    margin: 0;
+}
+/*MAIN DIV FOR CENTER THER FORM PARENT DIV*/
+.main-wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(rgb(0 0 0 / 73%),rgb(0 0 0 / 88%)), url(../img/3e7a1fcc-d3cd-407f-9421-71f71c51ea7b.jpg);
+    background-position: center;
+    background-size: cover;
+    overflow-y: hidden;
+}
+/*LOGO  AND DESCRIPTION STYLING*/
+.logo-section{
+    color: #ddd;
+}
+.logo-section h2{
+    font-weight: 900;
+}
+.logo-section h2 span{
+    color: #d12d09;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 10px 0px;
+}
+.logo-section p{
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+}
+/*Login form wrapper*/
+.wrapper{
+    background-color:#fbfafc;
+    border-radius: 13px;
+    font-size: 18px;
+    box-shadow:  0px 3px 8px rgba(0, 0, 0, 0.24);
+}
+.wrapper h4{
+    text-align: center;
+    font-size: 1.5rem;
+    color: #d12d09;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+.login-form label{
+    padding: 0.5rem 0.8rem;
+}
+
+/*LOGIN FORM INPUT STYLING*/
+
+::placeholder {
+    color: rgba(0, 0 , 0, 0.3) !important;
+}
+input[type="submit"]{
+    background: #d12d09;
+    border: none;
+    color: #fff;
+    border: 1px solid #d12d09;
+    font-weight: 600;
+}
+input[type="submit"]:hover{
+    color: #d12d09;
+    background-color: transparent;
+}
+/*LOGON FORN IN BUTTONS STYLING START HERE*/
+.forgetPassword{
+    color: #d12d09;
+    margin-top: 1rem;
+}
+.login-form .from-buttons a{
+    padding: 0.3rem;
+    color: #d12d09;
+} 
+input:focus, select:focus{
+    box-shadow: none !important;
+}
+
+.registration_checkbox label{
+    padding: 0;
+}
+/* registratoin form radio buttons styling */

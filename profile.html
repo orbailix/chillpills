@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTAP CSS CDN -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <!-- CUSTOM CSS LINK -->
+    <link rel="stylesheet" href="./assets/css/profile.css">
+    <title>Profile</title>
+</head>
+
+<body>
+    <!-- HEADER-SECTION START HERE-->
+    <header class="bg-light profileHeader py-2">
+        <nav class="navbar navbar-light  justify-content-between mx-4">
+            <a class="navbar-brand">Chillpill</a>
+            <div class="userProfile">
+                <a href="#">
+                    <img src="https://i.pinimg.com/736x/df/66/9f/df669f414be7c4a0d947a299e3be923d.jpg" alt="profile">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!-- HEADER-SECTION END HERE-->
+    <!-- === MAIN-PROFILE-SECTION START HERE=== -->
+    <section class="container">
+        <div class="row">
+            <!-- MAIN-COVER-SECTION START HERE-->
+            <div class="profileCover">
+                <button type="button" class="btn" id="uploadcover-button" data-toggle="modal" data-target="#myModal">
+                    <i class="fas fa-camera size"></i>
+                </button>
+                <!-- The Modal ===-->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Upload Cover </h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                uplaod any pic for cover..........
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- === PROFILE-CARD SECTION START HERE=== -->
+            <div class="userProfilecard rounded">
+                <div class="profileimg my-2">
+                    <!-- The PROFILE PIC -->
+                    <img class="img-fluid" src="https://i.pinimg.com/736x/df/66/9f/df669f414be7c4a0d947a299e3be923d.jpg"
+                        alt="profile-img">
+                        <!-- The Modal button -->
+                    <button type="button" class="btn uploadprofile-button" data-toggle="modal" data-target="#myModal">
+                        <i class="fas fa-camera size"></i>
+                    </button>
+                    <!-- The Modal -->
+                    <div class="modal" id="mypicModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Upload picture</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    uplaod any pic..........
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="user-name">username</h5>
+                </div>
+                <div class="userProfile-Detail row py-5 text-center">
+                    <p class="col-4"> Followers</p>
+                    <p class="col-4"> Following</p>
+                    <p class="col-4"> likes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MAIN-PROFILE-SECTION END HERE-->
+</body>
+
+</html>
