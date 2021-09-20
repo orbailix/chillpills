@@ -4,7 +4,6 @@
  $cuser=new registration();
 
 
-
  if($cuser->userExistsbyId($_SESSION['userId'])==0){
   
  
@@ -83,9 +82,7 @@
             <div class="form-group col-sm-7 clo-md-8 col-lg-6 mb-3">
               <input type="text" class="form-control" id="politicalincline"  name="political" placeholder="Political incline" required>
             </div>
-            <div class="form-group col-sm-7 clo-md-8 col-lg-6 mb-3">
-              <input type="text" class="form-control" id="phone"  name="phone" placeholder="Enter your phone number" required>
-            </div>
+           
             <textarea name="bio" id="bio" cols="5" rows="5"  name="bio"  placeholder="Write  about yourself"></textarea>
             <div class="d-flex mx-auto">
 

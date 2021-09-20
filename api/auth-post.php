@@ -1,9 +1,9 @@
 <?php 
 
 class post extends database{
-    public function add_post($userId, $caption, $image, $post_type, $created_on)
+    public function addPost($userId, $caption, $image, $post_type, $created_on)
     {
-        $sql = "INSERT INTO posts (userId,caption,image,post_type,created_on) VALUES (:userId, :caption, :image, :post_type, :created_on)";
+        $sql = "INSERT INTO posts (userId,caption,image,role,created_on) VALUES (:userId, :caption, :image, :post_type, :created_on)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':caption', $caption);
@@ -11,10 +11,8 @@ class post extends database{
         $stmt->bindParam(':post_type', $post_type);
         $stmt->bindParam(':created_on', $created_on);
         if ($stmt->execute())
-        {
-            // return true;
+        {     // return true;
             return true;
-
         }
         else
         {
@@ -23,7 +21,7 @@ class post extends database{
     }
     public function fetch_profile_post($userId)
     {
-        $sql = "SELECT * from posts where userId = :userId";
+        $sql = "SELECT * from posts where userId = :userId order by user_id DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':userId', $userId);
         if($stmt->execute()){
@@ -32,6 +30,47 @@ class post extends database{
             return false;
         }
     }
+    public function multipleImage($files)
+    {
+        $imgs = "";
+        foreach ($files['name'] as $key => $value) {
+            if (isset($files)) {
+                $img_name = $files['name'][$key];
+                $img_size = $files['size'][$key];
+                $img_tmp = $files['tmp_name'][$key];
+                $img_type = $files['type'];
+
+                $tmp = explode('.', $files['name'][$key]);
+                $img_ext = strtolower(end($tmp));
+
+                $extensions = array(
+                    "jpeg",
+                    "jpg",
+                    "png"
+                );
+
+                if (in_array($img_ext, $extensions) === false) {
+                    return $img=null;
+                    header("Location: ../logout.php");
+                    exit();
+                }
+
+                if ($img_size > 5 * 1024 * 1024) {
+                    header("Location: ../logout.php");
+                    ;
+                    exit();
+                }
+
+                if (empty($errors) == true) {
+                    $img = "../uploads/" . uniqid("img_") . "." . $img_ext;
+                    move_uploaded_file($img_tmp, $img);
+                    $imgs .= $img . ",";
+                }
+            }
+        }
+        return $imgs = substr($imgs, 0, strlen($imgs) - 1);
+    }
+
 
     public function addSingalImage($file)
     {
@@ -60,7 +99,30 @@ class post extends database{
     }
     return $img;
     }
-}
+
+    public function fetchFriendspost($userId)
+    {
+        $sql = "SELECT DISTINCT posts.* from posts inner join friends on (friends.userId=posts.userId or friends.toUserId=posts.userId ) where friends.userId = :userId or friends.toUserid=:userId order by posts.postId DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':userId', $userId);
+        if($stmt->execute()){
+            return $stmt->fetchAll();
+        }else{
+            return false;
+        }
+    }
+
+    public function fetchPostuser($userId){
+        $sql="SELECT firstName,lastName,image from user where user_Id=:userId";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':userId', $userId);
+        if($stmt->execute()){
+            return $stmt->fetch();
+        }else{
+            return false;
+        }
+    }
+}  
 
 
 

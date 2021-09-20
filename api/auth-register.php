@@ -89,46 +89,7 @@ class registration extends database
             return false;
         }
     }
-    public function multipleImage($files)
-    {
-        $imgs = "";
-        foreach ($_FILES['image']['name'] as $key => $value) {
-            if (isset($_FILES['image'])) {
-                $img_name = $files['image']['name'][$key];
-                $img_size = $files['image']['size'][$key];
-                $img_tmp = $files['image']['tmp_name'][$key];
-                $img_type = $files['image']['type'];
-
-                $tmp = explode('.', $files['image']['name'][$key]);
-                $img_ext = strtolower(end($tmp));
-
-                $extensions = array(
-                    "jpeg",
-                    "jpg",
-                    "png"
-                );
-
-                if (in_array($img_ext, $extensions) === false) {
-                    header("Location: ../logout.php");
-                    exit();
-                }
-
-                if ($img_size > 5 * 1024 * 1024) {
-                    header("Location: ../logout.php");
-                    ;
-                    exit();
-                }
-
-                if (empty($errors) == true) {
-                    $img = "../uploads/" . uniqid("img_") . "." . $img_ext;
-                    move_uploaded_file($img_tmp, $img);
-                    $imgs .= $img . ",";
-                }
-            }
-        }
-        return $imgs = substr($imgs, 0, strlen($imgs) - 1);
-    }
-
+   
     public function test_input($input)
     {
         $input = htmlspecialchars($input);
@@ -168,7 +129,7 @@ class registration extends database
     }
     public function userExistsbyId($id)
     {
-        $sql = "SELECT user_Id from user where user_id = :id";
+        $sql = "SELECT id from profile where userId = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id);
         if( $stmt->execute()){
@@ -187,9 +148,9 @@ class registration extends database
         return $hpassword;
     }
 
-    public function addPersonalInformation($userId, $website=null, $occupation, $province, $city, $status, $country, $belief, $politicalIntrest, $bio,$phone)
+    public function addPersonalInformation($userId, $website=null, $occupation, $province, $city, $status, $country, $belief, $politicalIntrest, $bio,)
     {
-        $sql="INSERT INTO profile (userId,website,occupation,province,city,status,country,belief,politicalIntrest,bio,phone) values(:userId,:website,:occupation,:province,:city,:status,:country,:belief,:politicalIntrest,:bio,:phone)";
+        $sql="INSERT INTO profile (userId,website,occupation,province,city,status,country,belief,politicalIntrest,bio) values(:userId,:website,:occupation,:province,:city,:status,:country,:belief,:politicalIntrest,:bio)";
         $stmt=$this->conn->prepare($sql);
         $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':website', $website);
@@ -201,7 +162,6 @@ class registration extends database
         $stmt->bindParam(':belief', $belief);
         $stmt->bindParam(':politicalIntrest', $politicalIntrest);
         $stmt->bindParam(':bio', $bio);
-        $stmt->bindParam(':phone', $phone);
         if ($stmt->execute()) {
             return true;
         } else {

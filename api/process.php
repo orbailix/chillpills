@@ -13,10 +13,12 @@ include "db-config.php";
 include "auth-register.php";
 include "auth-post.php";
 include "auth-signin.php";
+include "auth-friends.php";
 $cuser = new registration();
 $signin = new signin();
 
 $post = new post();
+$friends=new friends();
 
 
 //Kindly Pass it as current timestamp to have date and time according to our Country
@@ -136,30 +138,31 @@ if (isset($_POST['register'])) {
     if(isset($_POST['MODE']) && $_POST['MODE'] =="add_post"){
         $caption = $sigin->test_input($_POST['caption']);
         $image = '';
-        $post_add = $post->add_post(1, $caption, $image, 0 , $date);
+        $post_add = $post->addPost(1, $caption, $image, 0 , $date);
         return $post_add;
     }
 
-   
+   // for adding profile pic
     if (isset($_POST['MODE']) && $_POST['MODE']=="profile-pic") {
         $caption=$cuser->test_input($_POST['caption']);
         $image="";
         if (isset($_FILES)) {
             $image=$post->addSingalImage($_FILES['image']);
         };
-        if ($post->add_post($_SESSION['id'], $caption, $image, '0', $date)) {
+        if ($post->addPost($_SESSION['id'], $caption, $image, '0', $date)) {
             echo "hye";
         } else {
             echo "bye";
         };
     }
+    // for adding cover pic
     if (isset($_POST['MODE']) && $_POST['MODE']=="cover-pic") {
         $caption=$cuser->test_input($_POST['caption']);
         $image="";
         if (isset($_FILES)) {
             $image=$post->addSingalImage($_FILES['image']);
         };
-        if ($post->add_post($_SESSION['id'], $caption, $image, '1', $date)) {
+        if ($post->addPost($_SESSION['id'], $caption, $image, '1', $date)) {
             echo "hye";
         } else {
             echo "bye";
@@ -167,6 +170,7 @@ if (isset($_POST['register'])) {
     
 
 }
+//personal information form submission
 if (isset($_POST['informationForm'])) {
     
         $website=$cuser->test_input($_POST['website']);
@@ -196,6 +200,7 @@ if (isset($_POST['informationForm'])) {
 
 
 }
+//forgot password
 if(isset($_POST['forgotPassword'])){
     $email=$cuser->test_input($_POST['email']);
     if($cuser->userExists($email)>0){
@@ -238,6 +243,7 @@ if(isset($_POST['forgotPassword'])){
 
     
     }
+    // reset forward
     if(isset($_POST['resetPassword'])){
         $email=$cuser->test_input($_POST['email']);
         if ($cuser->validation($_POST['password'], 'password')) {
@@ -263,3 +269,57 @@ if(isset($_POST['forgotPassword'])){
         }
 
     }
+ 
+   // add post 
+    if(isset($_POST['action']) && $_POST['action']=="addPost"){
+       $caption=$cuser->test_input($_POST['caption']);
+       if(isset($_FILES['image'])){
+       
+          $image= $post->multipleImage($_FILES['image']);
+         
+       }
+
+      if($post->addPost($_SESSION['userId'], $caption, $image, '2', $date)){
+          echo "hi";
+           
+      }else{
+          echo "bye";   
+      }
+
+     
+    }
+    if (isset($_POST['action']) && $_POST['action']=="addfriend") {
+        $toUserid=$_POST['toUserid'];
+        if ($friends->insertFriendrequest($_SESSION['userId'], $toUserid)) {
+            echo "hi";
+        } else {
+            echo'bye';
+        }
+    }
+    if (isset($_POST['action']) && $_POST['action']=="cancelrequest") {
+        $toUserid=$_POST['toUserid'];
+        if ($friends->cancelFriendrequest($_SESSION['userId'], $toUserid)) {
+            echo "hi";
+        } else {
+            echo'bye';
+        }
+    }
+    if (isset($_POST['action']) && $_POST['action']=="acceptrequest") {
+        $toUserid=$_POST['toUserid'];
+        if ($friends->acceptFriendrequest($_SESSION['userId'], $toUserid)) {
+            echo "hi";
+        } else {
+            echo'bye';
+        }
+    }
+    if (isset($_POST['action']) && $_POST['action']=="unfriend") {
+        $toUserid=$_POST['toUserid'];
+        if ($friends->unFriend($_SESSION['userId'], $toUserid)) {
+            echo "hi";
+        } else {
+            echo'bye';
+        }
+    }
+
+
+    
