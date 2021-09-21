@@ -327,19 +327,24 @@ if(isset($_POST['forgotPassword'])){
             echo $notification->countNotification($_SESSION['userId']);
       
     }
+    if (isset($_POST['action']) && $_POST['action']=="updateNotificationstatus") {
+
+            echo $notification->updateNotificationstatus($_SESSION['userId']);
+      
+    }
     if (isset($_POST['action']) && $_POST['action']=="showNotification") {
 
         $result= $notification->showNotification($_SESSION['userId']);
         $output="";
         
         foreach($result as $row){
-            $output.='<li>
+            $output.='<li >
             <div class="author-thumb">
                 <img loading="lazy" src="'.$row['image'].'" width="34" height="34"
                     alt="author">
             </div>
             <div class="notification-event">
-                <div><a href="../'.$row['link'].'" class="h6 notification-friend">'.$row['firstName'].' '.$row['lastName'].'</a> '.$row['message'].' <a href="#" class="notification-link">profile status</a>.</div>
+                <div><a href="'.$row['link'].'" class="h6 notification-friend">'.$row['firstName'].' '.$row['lastName'].'</a> '.$row['message'].' <a href="#" class="notification-link">profile status</a>.</div>
                 <span class="notification-date"><time class="entry-date updated"
                         datetime="2004-07-24T18:18">'.$row['created_on'].'</time></span>
             </div>

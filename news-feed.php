@@ -1742,20 +1742,20 @@ include "session.php";
 						<a href="#" class="view-all bg-purple">View All Messages</a>
 					</div>
 				</div>
-				<div class="control-icon more has-items" onclick="showNotification()">
+				<div class="control-icon more has-items"  onclick="showNotification()">
 					<svg class="olymp-thunder-icon">
 						<use xlink:href="#olymp-thunder-icon"></use>
 					</svg>
-					<div class="label-avatar bg-primary" id="notificationCount">8</div>
-					<div class="more-dropdown more-with-triangle triangle-top-center">
+					<div class="label-avatar bg-primary" id="notificationCount"></div>
+					<div id="reveal"  class="more-dropdown more-with-triangle triangle-top-center ">
 						<div class="ui-block-title ui-block-title-small">
 							<h6 class="title">Notifications</h6>
 							<a href="#">Mark all as read</a>
 							<a href="#">Settings</a>
 						</div>
 						<div class="mCustomScrollbar" data-mcs-theme="dark">
-							<ul class="notification-list">
-								<li>
+							<ul class="notification-list"  id="showNotification" onmouseleave="removeClass()">
+								<!-- <li>
 									<div class="author-thumb">
 										<img loading="lazy" src="img/avatar62-sm.html" width="34" height="34"
 											alt="author">
@@ -1779,7 +1779,7 @@ include "session.php";
 											<use xlink:href="#olymp-little-delete"></use>
 										</svg>
 									</div>
-								</li>
+								</li> -->
 								<!-- <li class="un-read">
 									<div class="author-thumb">
 										<img loading="lazy" src="img/avatar63-sm.html" alt="author" width="34"
@@ -4242,7 +4242,7 @@ include "session.php";
 
 
 		})
-
+notificationCount();
 function notificationCount(){
 	$.ajax({
 		type: "POST",
@@ -4251,7 +4251,6 @@ function notificationCount(){
                     data: {'action':'countNotification'},
                     
                     success: function (data) {
-						console.log(data)
 					  
                        $("#notificationCount").text(data);
                     }
@@ -4275,15 +4274,32 @@ function notificationCount(){
                     data: {'action':'showNotification'},
                     
                     success: function (data) {
-						console.log(data)
-					  
-                    //    $("#notificationCount").text(data);
+						// console.log(data)
+						$("#reveal").addClass("reveal");
+
+                       $("#showNotification").html(data);
+                    }
+                   
+                });
+				$.ajax({
+		type: "POST",
+                   
+                    url: "api/process.php",
+                    data: {'action':'updateNotificationstatus'},
+                    
+                    success: function (data) {
+						// console.log(data)
+						notificationCount();
+						
                     }
                    
                 });
    }
 
-
+function removeClass(){
+	$("#reveal").removeClass("reveal");
+	
+}
 
 
 
