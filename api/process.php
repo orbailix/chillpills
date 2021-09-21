@@ -14,11 +14,13 @@ include "auth-register.php";
 include "auth-post.php";
 include "auth-signin.php";
 include "auth-friends.php";
+include "auth-notification.php";
 $cuser = new registration();
 $signin = new signin();
 
 $post = new post();
 $friends=new friends();
+$notification= new notification;
 
 
 //Kindly Pass it as current timestamp to have date and time according to our Country
@@ -320,6 +322,45 @@ if(isset($_POST['forgotPassword'])){
             echo'bye';
         }
     }
+    if (isset($_POST['action']) && $_POST['action']=="countNotification") {
+
+            echo $notification->countNotification($_SESSION['userId']);
+      
+    }
+    if (isset($_POST['action']) && $_POST['action']=="showNotification") {
+
+        $result= $notification->showNotification($_SESSION['userId']);
+        $output="";
+        
+        foreach($result as $row){
+            $output.='<li>
+            <div class="author-thumb">
+                <img loading="lazy" src="'.$row['image'].'" width="34" height="34"
+                    alt="author">
+            </div>
+            <div class="notification-event">
+                <div><a href="../'.$row['link'].'" class="h6 notification-friend">'.$row['firstName'].' '.$row['lastName'].'</a> '.$row['message'].' <a href="#" class="notification-link">profile status</a>.</div>
+                <span class="notification-date"><time class="entry-date updated"
+                        datetime="2004-07-24T18:18">'.$row['created_on'].'</time></span>
+            </div>
+            <span class="notification-icon">
+                <svg class="olymp-comments-post-icon">
+                    <use xlink:href="#olymp-comments-post-icon"></use>
+                </svg>
+            </span>
+            <div class="more">
+                <svg class="olymp-three-dots-icon">
+                    <use xlink:href="#olymp-three-dots-icon"></use>
+                </svg>
+                <svg class="olymp-little-delete">
+                    <use xlink:href="#olymp-little-delete"></use>
+                </svg>
+            </div>
+        </li>';
+
+        }
+  echo $output;
+}
 
 
     

@@ -1742,11 +1742,11 @@ include "session.php";
 						<a href="#" class="view-all bg-purple">View All Messages</a>
 					</div>
 				</div>
-				<div class="control-icon more has-items">
+				<div class="control-icon more has-items" onclick="showNotification()">
 					<svg class="olymp-thunder-icon">
 						<use xlink:href="#olymp-thunder-icon"></use>
 					</svg>
-					<div class="label-avatar bg-primary">8</div>
+					<div class="label-avatar bg-primary" id="notificationCount">8</div>
 					<div class="more-dropdown more-with-triangle triangle-top-center">
 						<div class="ui-block-title ui-block-title-small">
 							<h6 class="title">Notifications</h6>
@@ -1780,7 +1780,7 @@ include "session.php";
 										</svg>
 									</div>
 								</li>
-								<li class="un-read">
+								<!-- <li class="un-read">
 									<div class="author-thumb">
 										<img loading="lazy" src="img/avatar63-sm.html" alt="author" width="34"
 											height="34">
@@ -1878,7 +1878,7 @@ include "session.php";
 											<use xlink:href="#olymp-little-delete"></use>
 										</svg>
 									</div>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 						<a href="#" class="view-all bg-primary">View All Notifications</a>
@@ -4243,7 +4243,51 @@ include "session.php";
 
 		})
 
-	})
+function notificationCount(){
+	$.ajax({
+		type: "POST",
+                    enctype: 'multipart/form-data',
+                    url: "api/process.php",
+                    data: {'action':'countNotification'},
+                    
+                    success: function (data) {
+						console.log(data)
+					  
+                       $("#notificationCount").text(data);
+                    }
+                    // error: function (e) {
+                    //     $("#output").text(e.responseText);
+                    //     console.log("ERROR : ", e);
+                    //     $("#btnSubmit").prop("disabled", false);
+                    // }
+                });
+	}
+	setInterval(notificationCount, 5000);
+
+
+
+})
+   function showNotification(){
+	$.ajax({
+		type: "POST",
+                   
+                    url: "api/process.php",
+                    data: {'action':'showNotification'},
+                    
+                    success: function (data) {
+						console.log(data)
+					  
+                    //    $("#notificationCount").text(data);
+                    }
+                   
+                });
+   }
+
+
+
+
+
+	
 </script>
 
 
