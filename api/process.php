@@ -15,12 +15,14 @@ include "auth-post.php";
 include "auth-signin.php";
 include "auth-friends.php";
 include "auth-notification.php";
+include "auth-comment.php";
 $cuser = new registration();
 $signin = new signin();
 
 $post = new post();
 $friends=new friends();
-$notification= new notification;
+$notification= new notification();
+$comment= new comment();
 
 
 //Kindly Pass it as current timestamp to have date and time according to our Country
@@ -332,6 +334,16 @@ if(isset($_POST['forgotPassword'])){
             echo $notification->updateNotificationstatus($_SESSION['userId']);
       
     }
+    if (isset($_POST['action']) && $_POST['action']=="likepost") {
+
+            echo  $post->likePost($_SESSION['userId'],$_POST['postId'],$date);
+      
+    }
+    if (isset($_POST['action']) && $_POST['action']=="unlikepost") {
+
+            echo  $post->unlikePost($_SESSION['userId'],$_POST['postId']);
+      
+    }
     if (isset($_POST['action']) && $_POST['action']=="showNotification") {
 
         $result= $notification->showNotification($_SESSION['userId']);
@@ -368,4 +380,29 @@ if(isset($_POST['forgotPassword'])){
 }
 
 
-    
+if (isset($_POST['comment-Box66'])) {
+
+$image=$comment->addSingalImage($_FILES['comment-Image']);
+$comments=$cuser->test_input($_POST['comment-Box66']);
+
+$res=$comment->addComment($_SESSION['userId'], $_POST['uniqueId'], $comments,$image, $date);
+if ($res){
+    echo 'hi';
+}else{
+    echo "bye";
+}
+
+
+}
+if (isset($_POST['action']) && $_POST['action']=='mentionSuggestion') {
+
+$suggestions=$comment->mentionSuggestion($_SESSION['userId']);
+
+if ($res){
+    echo 'hi';
+}else{
+    echo "bye";
+}
+
+
+}

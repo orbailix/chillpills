@@ -21,6 +21,9 @@ include "session.php";
 	<link rel="stylesheet" type="text/css" href="Bootstrap/dist/css/bootstrap.css">
 
 	<link rel="stylesheet" type="text/css" href="css/main.min.css">
+	<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> -->
+
 
 
 
@@ -1742,19 +1745,19 @@ include "session.php";
 						<a href="#" class="view-all bg-purple">View All Messages</a>
 					</div>
 				</div>
-				<div class="control-icon more has-items"  onclick="showNotification()">
+				<div class="control-icon more has-items" onclick="showNotification()">
 					<svg class="olymp-thunder-icon">
 						<use xlink:href="#olymp-thunder-icon"></use>
 					</svg>
 					<div class="label-avatar bg-primary" id="notificationCount"></div>
-					<div id="reveal"  class="more-dropdown more-with-triangle triangle-top-center ">
+					<div id="reveal" class="more-dropdown more-with-triangle triangle-top-center ">
 						<div class="ui-block-title ui-block-title-small">
 							<h6 class="title">Notifications</h6>
 							<a href="#">Mark all as read</a>
 							<a href="#">Settings</a>
 						</div>
 						<div class="mCustomScrollbar" data-mcs-theme="dark">
-							<ul class="notification-list"  id="showNotification" onmouseleave="removeClass()">
+							<ul class="notification-list" id="showNotification" onmouseleave="removeClass()">
 								<!-- <li>
 									<div class="author-thumb">
 										<img loading="lazy" src="img/avatar62-sm.html" width="34" height="34"
@@ -2468,7 +2471,8 @@ include "session.php";
 									</div>
 									<div class="form-group with-icon label-floating is-empty">
 										<label class="control-label">Share what you are thinking here...</label>
-										<textarea class="form-control"  id="post-caption" name="caption" placeholder=""></textarea>
+										<textarea class="form-control" id="post-caption" name="caption"
+											placeholder=""></textarea>
 									</div>
 									<div class="add-options-message">
 										<a href="#" class="options-message" data-bs-toggle="tooltip"
@@ -2491,7 +2495,8 @@ include "session.php";
 											</svg>
 										</a>
 										<input type="hidden" name="action" value="addPost">
-										<button class="btn btn-primary btn-md-2" type="submit" id="post-button">Post Status</button>
+										<button class="btn btn-primary btn-md-2" type="submit" id="post-button">Post
+											Status</button>
 
 									</div>
 									<div class="modal fade" id="update-header-photo" tabindex="-1" role="dialog"
@@ -2513,7 +2518,8 @@ include "session.php";
 															<use xlink:href="#olymp-computer-icon"></use>
 														</svg>
 														<h6>Upload Photo</h6>
-														<input type="file" id="post-image" id="post-image" name="image[]" multiple>
+														<input type="file" id="post-image" id="post-image"
+															name="image[]" multiple>
 														<span>Browse your computer.</span>
 													</a>
 													<a href="#" class="upload-photo-item" data-bs-toggle="modal"
@@ -2938,123 +2944,258 @@ include "session.php";
 						
 
                            ?>
-						   <div id="news-feed">
-					<div class="ui-block">
-						<article class="hentry post has-post-thumbnail">
-							<div class="post__author author vcard inline-items">
-								<img loading="lazy" src="<?php $image=trim($ress['image'],'\.\./');echo $image;?>" alt="author" width="42" height="42">
-								<div class="author-date">
-									<a class="h6 post__author-name fn" href="#"><?php echo $name;
+					<div id="news-feed">
+						<div class="ui-block">
+							<article class="hentry post has-post-thumbnail pb-0">
+								<div class="post__author author vcard inline-items">
+									<img loading="lazy" src="<?php $image=trim($ress['image'],'\.\./');echo $image;?>"
+										alt="author" width="42" height="42">
+									<div class="author-date">
+										<a class="h6 post__author-name fn" href="#"><?php echo $name;
 									?></a>
-									<div class="post__date">
-										<time class="published" datetime="2004-07-24T18:18">
-										<?php echo $row['created_on'];
+										<div class="post__date">
+											<time class="published" datetime="2004-07-24T18:18">
+												<?php echo $row['created_on'];
 									?>
-										</time>
+											</time>
+										</div>
+									</div>
+									<div class="more"><svg class="olymp-three-dots-icon">
+											<use xlink:href="#olymp-three-dots-icon"></use>
+										</svg>
+										<ul class="more-dropdown">
+											<li>
+												<a href="#">Edit Post</a>
+											</li>
+											<li>
+												<a href="#">Delete Post</a>
+											</li>
+											<li>
+												<a href="#">Turn Off Notifications</a>
+											</li>
+											<li>
+												<a href="#">Select as Featured</a>
+											</li>
+										</ul>
 									</div>
 								</div>
-								<div class="more"><svg class="olymp-three-dots-icon">
-										<use xlink:href="#olymp-three-dots-icon"></use>
-									</svg>
-									<ul class="more-dropdown">
-										<li>
-											<a href="#">Edit Post</a>
-										</li>
-										<li>
-											<a href="#">Delete Post</a>
-										</li>
-										<li>
-											<a href="#">Turn Off Notifications</a>
-										</li>
-										<li>
-											<a href="#">Select as Featured</a>
-										</li>
-									</ul>
+								<p><?php echo $row['caption'];?>
+								</p>
+								<div class="post-thumb">
+									<img loading="lazy" src="<?php $image=trim($row['image'],'\.\./');echo $image;?>"
+										alt="photo" width="518" height="762">
 								</div>
-							</div>
-							<p><?php echo $row['caption'];?>
-							</p>
-							<div class="post-thumb">
-								<img loading="lazy" src="<?php $image=trim($row['image'],'\.\./');echo $image;?>" alt="photo" width="518" height="762">
-							</div>
-							<div class="post-additional-info inline-items">
-								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-heart-icon">
-										<use xlink:href="#olymp-heart-icon"></use>
-									</svg>
-									<span>49</span>
-								</a>
-								<ul class="friends-harmonic">
-									<li>
-										<a href="#">
-											<img loading="lazy" src="img/friend-harmonic9.html" alt="friend" width="28"
-												height="28">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img loading="lazy" src="img/friend-harmonic10.html" alt="friend" width="28"
-												height="28">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img loading="lazy" src="img/friend-harmonic7.html" alt="friend" width="28"
-												height="28">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img loading="lazy" src="img/friend-harmonic8.html" alt="friend" width="28"
-												height="28">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img loading="lazy" src="img/friend-harmonic11.html" alt="friend" width="28"
-												height="28">
-										</a>
-									</li>
-								</ul>
-								<div class="names-people-likes">
-									<a href="#">Jimmy</a>, <a href="#">Andrea</a> and
-									<br>47 more liked this
-								</div>
-								<div class="comments-shared">
-									<a href="#" class="post-add-icon inline-items">
-										<svg class="olymp-speech-balloon-icon">
-											<use xlink:href="#olymp-speech-balloon-icon"></use>
-										</svg>
-										<span>264</span>
+								<div id="likess<?php echo $row['postId']?>">
+									<div class="post-additional-info inline-items">
+										<div class="post-add-icon inline-items">
+											<?php if($post->checkUserlike($_SESSION['userId'],$row['postId'])==0 ){
+												  
+												  ?>
+											<svg class="olymp-heart-icon"
+												onclick="likepost(<?php echo $row['postId']?>)">
+												<use xlink:href="#olymp-heart-icon"></use>
+												<!-- <i class="far fa-heart fa-lg" style='color:red;'></i> -->
+
+											</svg><?php }elseif($post->checkUserlike($_SESSION['userId'],$row['postId'])==1 ){?>
+											<i class="far fa-heart fa-lg"
+												onclick="unlikePost(<?php echo $row['postId']?>)"
+												style='color:red;'></i><?php }?>
+											<span><?php echo $post->countPostlike($row['postId'])?></span>
+										</div>
+
+
+										<div class="comments-shared">
+											<a href="#" class="post-add-icon inline-items">
+												<svg class="olymp-speech-balloon-icon">
+													<use xlink:href="#olymp-speech-balloon-icon"></use>
+												</svg>
+												<span>264</span>
+											</a>
+
+											<a href="#" class="post-add-icon inline-items">
+												<svg class="olymp-share-icon">
+													<use xlink:href="#olymp-share-icon"></use>
+												</svg>
+												<span>37</span>
+											</a>
+
+
+										</div>
+
+									</div>
+									<hr>
+									<!-- view more -->
+									<a href="javascript:void(0)" class="commentLoader justify-content-center">
+										<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+											stroke-linecap="round" stroke-linejoin="round"
+											class="feather feather-rotate-cw iw-15 ih-15">
+											<polyline points="23 4 23 10 17 10"></polyline>
+											<path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+										</svg> <span class="ms-2">load more
+											replies</span>
 									</a>
-									<a href="#" class="post-add-icon inline-items">
+									<!-- comment box -->
+									<div class="comment-box my-3">
+										<!-- show 2 comm -->
+										<div class="comm">
+											<div class="comment_user d-flex">
+												<!-- img -->
+												<div class="user-img mb-auto">
+													<img src="./uploads/img_6147a307d2da0.jpg" class="h-100"
+														alt="jigree">
+												</div>
+												<!-- name -->
+												<div>
+													<div class="user-data ms-2">
+														<a href="#" class="h6 mb-0">Arham Khan</a>
+														<p class="comment-text my-0">MashaAllah Good </p>
+													</div>
+													<div class="commnet-action">
+														<span class="like">
+															Like
+														</span>
+														<span class="Reply">
+															Reply
+														</span>
+													</div>
+												</div>
+											</div>
+
+
+										</div>
+										<div class="comm my-2 ms-5">
+											<div class="comment_user d-flex">
+												<!-- img -->
+												<div class="user-imgr mb-auto">
+													<img src="./uploads/img_6147a307d2da0.jpg" alt="jigree">
+												</div>
+												<!-- name -->
+												<div>
+													<div class="user-datar ms-2">
+														<a href="#" class="h6 mb-0">Arham Khan</a>
+														<p class="comment-texts my-0">MashaAllah Good </p>
+													</div>
+													<div class="commnet-action">
+														<span class="like">
+															Like
+														</span>
+														<span class="Reply">
+															Reply
+														</span>
+													</div>
+												</div>
+
+											</div>
+											<div class="comment-inputr d-flex">
+												<div class="user-imgr mt-3">
+													<img src="./uploads/img_6147a307d2da0.jpg" class="h-100"
+														alt="jigree">
+												</div>
+												<div class="form-group">
+													<!-- <input type="text" class="form-control ml-2 py-2" placeholder="write a comment"> -->
+													<textarea name="" id="" class="form-control mt-2"
+														placeholder="write a comment" rows="1"></textarea>
+												</div>
+											</div>
+
+										</div>
+
+										<!-- input -->
+									</div>
+
+									<div class="comment-box my-3">
+										<!-- show 2 comm -->
+										<div class="comm">
+											<div class="comment_user d-flex">
+												<!-- img -->
+												<div class="user-img mb-auto">
+													<img src="./uploads/img_6147a307d2da0.jpg" class="h-100"
+														alt="jigree">
+												</div>
+												<!-- name -->
+												<div>
+													<div class="user-data ms-2">
+														<a href="#" class="h6 mb-0">Arham Khan</a>
+														<p class="comment-text my-0">MashaAllah Good </p>
+													</div>
+													<div class="commnet-action">
+														<span class="like">
+															Like
+														</span>
+														<span class="Reply">
+															Reply
+														</span>
+													</div>
+												</div>
+											</div>
+
+
+										</div>
+									</div>
+
+									<!-- input -->
+									<div class="comment-input  d-flex">
+										<div class="user-img mb-auto">
+											<img src="./uploads/img_6147a307d2da0.jpg" class="h-100" alt="jigree">
+										</div>
+										<div class="form-group">
+											<!-- <input type="text" class="form-control ml-2 py-2" placeholder="write a comment"> -->
+											<form action="api/process.php" method="POST" class="commentBox-form" id="commentBox-form<?php echo $row['unique_id']?>"
+												enctype="multipart/form-data">
+												
+												<textarea name="comment-Box66" id="commentBox"
+													class="form-control" placeholder="write a comment"
+													rows="1" onkeyup="addComment(event,'commentBox-form<?php echo $row['unique_id']?>','<?php echo $row['unique_id']?>')"> </textarea>
+                                                     
+
+												<div class="image-upload">
+													<label for="file-input">
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+															fill="none" stroke="currentColor" stroke-width="2"
+															stroke-linecap="round" stroke-linejoin="round"
+															class="feather feather-camera icon iw-14 ih-14">
+															<path
+																d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+															</path>
+															<circle cx="12" cy="13" r="4"></circle>
+														</svg>
+													</label>
+													
+
+													<input id="file-input" name="comment-Image" type="file" />
+												</div>
+											</form>
+										</div>
+									</div>
+
+									<!-- input for comment -->
+
+									<!-- end of comment box -->
+
+								</div>
+
+								<div class="control-block-button post-control-button">
+
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-like-post-icon">
+											<use xlink:href="#olymp-like-post-icon"></use>
+										</svg>
+									</a>
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-comments-post-icon">
+											<use xlink:href="#olymp-comments-post-icon"></use>
+										</svg>
+									</a>
+									<a href="#" class="btn btn-control">
 										<svg class="olymp-share-icon">
 											<use xlink:href="#olymp-share-icon"></use>
 										</svg>
-										<span>37</span>
 									</a>
 								</div>
-							</div>
-							<div class="control-block-button post-control-button">
-
-								<a href="#" class="btn btn-control">
-									<svg class="olymp-like-post-icon">
-										<use xlink:href="#olymp-like-post-icon"></use>
-									</svg>
-								</a>
-								<a href="#" class="btn btn-control">
-									<svg class="olymp-comments-post-icon">
-										<use xlink:href="#olymp-comments-post-icon"></use>
-									</svg>
-								</a>
-								<a href="#" class="btn btn-control">
-									<svg class="olymp-share-icon">
-										<use xlink:href="#olymp-share-icon"></use>
-									</svg>
-								</a>
-							</div>
-						</article>
-					</div></div>
+							</article>
+						</div>
+					</div>
 					<?php
                        }?>
 					<!-- <div class="ui-block">
@@ -3253,10 +3394,11 @@ include "session.php";
 						</article>
 					</div>
 				</div> -->
-				<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html"
-					data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon">
-						<use xlink:href="#olymp-three-dots-icon"></use>
-					</svg></a>
+					<a id="load-more-button" href="#" class="btn btn-control btn-more"
+						data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg
+							class="olymp-three-dots-icon">
+							<use xlink:href="#olymp-three-dots-icon"></use>
+						</svg></a>
 			</main>
 
 
@@ -4206,104 +4348,243 @@ include "session.php";
 
 <script>
 	$(document).ready(function () {
-		$("#form-post").submit(function (e) {
-			e.preventDefault();
-			var form = $("#form-post")[0];
-            console.log(form);
-			var formData = new FormData(this);
-			console.log(formData);
-			// let postImage=$("#post-image").val();
-			// console.log(postImage);
-			// let data=$("#form-post").serialize()+'image='+postImage+'action=post-newsfeed';
-			$.ajax({
-                    type: "POST",
-                    enctype: 'multipart/form-data',
-                    url: "api/process.php",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    // timeout: 800000,
-                    success: function (data) {
-						if(data=="hi"){
-                      $("#post-image").val(null);
-					  $("#post-caption").val(null);
-					  $("#news-feed").load(location.href + " #news-feed");
-                      }
-					  
-                        // $("#btnSubmit").prop("disabled", false);
-                    },
-                    // error: function (e) {
-                    //     $("#output").text(e.responseText);
-                    //     console.log("ERROR : ", e);
-                    //     $("#btnSubmit").prop("disabled", false);
-                    // }
-                });
+	$("#form-post").submit(function (e) {
+		e.preventDefault();
+		var form = $("#form-post")[0];
+		// console.log(form);
+		var formData = new FormData(this);
+		console.log(formData);
+		// let postImage=$("#post-image").val();
+		// console.log(postImage);
+		// let data=$("#form-post").serialize()+'image='+postImage+'action=post-newsfeed';
+		$.ajax({
+			type: "POST",
+			enctype: 'multipart/form-data',
+			url: "api/process.php",
+			data: formData,
+			processData: false,
+			contentType: false,
+			cache: false,
+			// timeout: 800000,
+			success: function (data) {
+				if (data == "hi") {
+					$("#post-image").val(null);
+					$("#post-caption").val(null);
+					$("#news-feed").load(location.href + " #news-feed");
+				}
+
+				// $("#btnSubmit").prop("disabled", false);
+			},
+			// error: function (e) {
+			//     $("#output").text(e.responseText);
+			//     console.log("ERROR : ", e);
+			//     $("#btnSubmit").prop("disabled", false);
+			// }
+		});
 
 
-		})
-notificationCount();
-function notificationCount(){
-	$.ajax({
-		type: "POST",
-                    enctype: 'multipart/form-data',
-                    url: "api/process.php",
-                    data: {'action':'countNotification'},
-                    
-                    success: function (data) {
-					  
-                       $("#notificationCount").text(data);
-                    }
-                    // error: function (e) {
-                    //     $("#output").text(e.responseText);
-                    //     console.log("ERROR : ", e);
-                    //     $("#btnSubmit").prop("disabled", false);
-                    // }
-                });
+	})
+	notificationCount();
+
+	function notificationCount() {
+		$.ajax({
+			type: "POST",
+			enctype: 'multipart/form-data',
+			url: "api/process.php",
+			data: {
+				'action': 'countNotification'
+			},
+
+			success: function (data) {
+
+				$("#notificationCount").text(data);
+			}
+			// error: function (e) {
+			//     $("#output").text(e.responseText);
+			//     console.log("ERROR : ", e);
+			//     $("#btnSubmit").prop("disabled", false);
+			// }
+		});
 	}
 	setInterval(notificationCount, 5000);
 
 
 
-})
-   function showNotification(){
-	$.ajax({
-		type: "POST",
-                   
-                    url: "api/process.php",
-                    data: {'action':'showNotification'},
-                    
-                    success: function (data) {
-						// console.log(data)
-						$("#reveal").addClass("reveal");
+	})
 
-                       $("#showNotification").html(data);
-                    }
-                   
-                });
+
+	// $("#commentBox").keyup((e) => {
+	// if(e.key==='@'){
+	//     console.log("pressed key @");
+	// }else if (e.keyCode===13){
+	//     e.preventDefault();
+	// 	var form = $("#commentBox-form")[0];
+	// 	alert(0)
+		
+	// 			var formData = new FormData(form);
+
+	// 			$.ajax({
+	// 				type: "POST",
+	// 				enctype: 'multipart/form-data',
+	// 				url: "api/process.php",
+	// 				data: formData,
+	// 				processData: false,
+	// 				contentType: false,
+	// 				cache: false,
+	// 				success: function (data) {
+	//                     console.log(data);
+	// 					if (data == "hi") {
+	// 						// $("#post-image").val(null);
+	// 						// $("#post-caption").val(null);
+	// 						// $("#news-feed").load(location.href + " #news-feed");
+	// 					}
+
+	// 				},
+
+	// 			});
+
+	// }
+
+
+
+	// });
+
+	function addComment(formId){
+        console.log(formId);
+	}
+
+
+	function showNotification() {
+		$.ajax({
+			type: "POST",
+
+			url: "api/process.php",
+			data: {
+				'action': 'showNotification'
+			},
+
+			success: function (data) {
+				// console.log(data)
+				$("#reveal").addClass("reveal");
+
+				$("#showNotification").html(data);
+			}
+
+		});
+		$.ajax({
+			type: "POST",
+
+			url: "api/process.php",
+			data: {
+				'action': 'updateNotificationstatus'
+			},
+
+			success: function (data) {
+				// console.log(data)
+				notificationCount();
+
+			}
+
+		});
+	}
+
+	function removeClass() {
+		$("#reveal").removeClass("reveal");
+
+	}
+
+	function likepost(postId) {
+		$.ajax({
+			type: "POST",
+
+			url: "api/process.php",
+			data: {
+				'action': 'likepost',
+				'postId': postId
+			},
+
+			success: function (data) {
+				console.log(data)
+				$("#likess" + postId).load(location.href + "  #likess" + postId);
+				// notificationCount();
+
+			}
+
+		});
+	}
+
+	function unlikePost(postId) {
+		$.ajax({
+			type: "POST",
+
+			url: "api/process.php",
+			data: {
+				'action': 'unlikepost',
+				'postId': postId
+			},
+
+			success: function (data) {
+				console.log(data)
+				$("#likess" + postId).load(location.href + "  #likess" + postId);
+				// notificationCount();
+
+			}
+
+		});
+	}
+
+	function addComment(event,formId,uniqueId) {
+      if(event.key==='@'){
+	    $.ajax({
+			
+					type: "POST",
+					url: "api/process.php",
+					data: {'action':'mentionSuggestion'},
+					processData: false,
+					contentType: false,
+					cache: false,
+					success: function (data) {
+	                   
+						if (data == "hi") {
+							//  console.log(data);
+							$(form).trigger("reset");
+						}
+
+					},
+
+				});
+		
+	}else if (event.keyCode===13){
+	    event.preventDefault();
+		var form = $("#"+formId)[0];
+     
+		
+				var formData = new FormData(form);
+				formData.append('uniqueId', uniqueId);
 				$.ajax({
-		type: "POST",
-                   
-                    url: "api/process.php",
-                    data: {'action':'updateNotificationstatus'},
-                    
-                    success: function (data) {
-						// console.log(data)
-						notificationCount();
-						
-                    }
-                   
-                });
-   }
+					type: "POST",
+					enctype: 'multipart/form-data',
+					url: "api/process.php",
+					data: formData,
+					processData: false,
+					contentType: false,
+					cache: false,
+					success: function (data) {
+	                   
+						if (data == "hi") {
+							//  console.log(data);
+							$(form).trigger("reset");
+						}
 
-function removeClass(){
-	$("#reveal").removeClass("reveal");
-	
-}
+					},
+
+				});
+
+	}
 
 
 
-	
+	}
 </script>
 
 

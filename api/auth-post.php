@@ -3,9 +3,11 @@
 class post extends database{
     public function addPost($userId, $caption, $image, $post_type, $created_on)
     {
-        $sql = "INSERT INTO posts (userId,caption,image,role,created_on) VALUES (:userId, :caption, :image, :post_type, :created_on)";
+        $unique_id = md5(date("Y-m-d h-i-s"));
+        $sql = "INSERT INTO posts (userId,unique_id,caption,image,role,created_on) VALUES (:userId,:unique_id, :caption, :image, :post_type, :created_on)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':userId', $userId);
+        $stmt->bindParam(':unique_id', $unique_id);
         $stmt->bindParam(':caption', $caption);
         $stmt->bindParam(':image', $image);
         $stmt->bindParam(':post_type', $post_type);
@@ -85,11 +87,11 @@ class post extends database{
     $extensions= array("jpeg","jpg","png");
     
     if(in_array($img_ext,$extensions)=== false){
-       header("Location: add_blog.php?alert=invalid_type");
+     return false;
     }
     
     if($img_size > 5 * 1024 * 1024){
-        header("Location: add_blog.php?alert=Too_Big_img");
+        return false;
     }
     
     if(empty($errors)==true){
@@ -122,6 +124,51 @@ class post extends database{
             return false;
         }
     }
+    
+    
+    public function likePost($userId,$postId,$date){
+        $sql="INSERT INTO postLike (userId,postId,created_on) VALUES (:userId,:postId,'$date')";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':userId', $userId); 
+        $stmt->bindParam(':postId', $postId); 
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function unlikePost($userId,$postId){
+        $sql="DELETE FROM postLike where userId=:userId AND postId=:postId";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':userId', $userId); 
+        $stmt->bindParam(':postId', $postId); 
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function checkUserlike($userId,$postId){
+    $sql="SELECT likeId from postLike where userId=:userId AND postId=:postId";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':userId', $userId); 
+    $stmt->bindParam(':postId', $postId); 
+    if($stmt->execute()){
+        return $stmt->rowCount();
+    }else{
+        return false;
+    }
+    }
+    public function countPostlike($postId){
+        $sql="SELECT likeId from postLike where postId=:postId";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':postId', $postId); 
+        if($stmt->execute()){
+            return $stmt->rowCount();
+        }else{
+            return false;
+        }
+        }
 }  
 
 

@@ -22823,3 +22823,104 @@ textarea::placeholder {
     color: #32333d;
     font-size: 1rem;
 }
+
+/* comment section styling */
+.user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+}
+.user-data{
+    padding: 10px 15px;
+    background-color: #e2e9ef61;
+    border-radius: 17px;
+}
+.commnet-action{
+    padding: 0 15px;
+}
+.commnet-action span{
+    font-weight: 700;
+    cursor: pointer;
+}
+.commnet-action span:nth-child(2){
+    margin-left: 10px;
+}
+.comment-input .form-group{
+    margin-left: 15px;
+    width: 90%;
+}
+.comment-input .form-group textarea{
+    padding: 10px 40px 15px 18px;
+    border-radius: 19px;
+    overflow-y: hidden;
+}
+.user-imgr{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+}
+.user-datar{
+    padding: 7px 10px;
+    background-color: #e2e9ef61;
+    border-radius: 17px;
+}
+.comment-texts{
+    font-size: .775rem;
+}
+.comment-inputr .form-group{
+    margin-left: 10px;
+    width: 65%;
+}
+.comment-inputr .form-group textarea{
+    padding: 10px 18px 15px;
+    border-radius: 19px;
+    overflow-y: hidden;
+}
+.commentLoader {
+    /* margin-left: 15px; */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-transform: capitalize;
+    margin-top: 20px;
+    color: #ff5e3a;
+    font-weight: 500;
+    background-color: rgba(237, 247, 251, 0.25);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size:12px;
+}
+.commentBox-form{
+    position:relative;
+    /* border:1px solid; */
+       
+}
+/* .comment-image-box{
+    position:relative;
+}
+.comment-image-box input{
+    position:absolute;
+    width:30px;
+} */
+.commentBox-form svg{
+    position:absolute; 
+    top:35%;
+    cursor:pointer;
+    right:20px;
+    width:24px;
+    height:24px;
+    transform: translateY(-50%);
+    
+}
+.image-upload>input {
+    display: none;
+  }
